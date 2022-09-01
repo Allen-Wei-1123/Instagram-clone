@@ -1,0 +1,107 @@
+*{
+    margin:0;
+    padding: 0;;
+}
+
+.postmodal{
+    /* visibility: hidden; */
+    display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.postmodalcontent{
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+    height: 512px;
+}
+
+.postmodalcontent h3{
+    text-align: center;;
+}
+
+.imgview{
+    float: left;
+    height: 100%;
+    width:  70%;
+    position: relative;
+    border-right: 1px solid lightgray;
+}
+
+.imgview{
+    padding: 5px 5px 5px 5px;
+}
+
+
+.imgview button{
+    position: absolute;
+    top:300px;
+    width: 50%;
+}
+
+
+.rangeview{
+    float: left;
+    height: 100%;
+    width:30%;
+    padding-left: 10px;
+    padding-right: 10px;;
+    position:relative;
+}
+
+.rangeview button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.wrapper{
+    height: 90%;
+    width: 100%;
+    border: 2px dotted lightgray;
+}
+
+
+.navbarinputfile{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+}
+
+input[type="file"]{
+    display: none;;
+}
+
+.navbarinputfile  label{
+    background-color: #0c6efd;
+    border-radius: 3px;
+    color: white;
+    width: 200px;
+    text-align: center;
+}
+
+.wrapper img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.imgfilterbrightness{
+    filter:brightness(200);
+}
+
+.rangeview textarea{
+    margin-top: 40px;
+}

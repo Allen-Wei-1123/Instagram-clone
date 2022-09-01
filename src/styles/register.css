@@ -1,0 +1,41 @@
+*{
+    margin: 0;;
+    padding: 0;
+    /* background-color: #fafafa; */
+}
+
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
+.backgroundview{
+    width: 100%;
+    height: 600px;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+
+.registerpage{
+    margin: 20px auto;
+    height: fit-content;
+    width: 400px;
+    padding: 10px 10px 10px 10px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.registerpage h3{
+    text-align: center;
+}
+
+.inputfile{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
+.inputfile img{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+}

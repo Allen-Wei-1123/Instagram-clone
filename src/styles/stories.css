@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.storiesmodal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #1a1a1a; /* Fallback color */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.storiesmodalcontent{
+    background-color: #fefefe;
+    margin:  auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    height: 100%;
+    position: relative;
+}
+
+.ReplyandLike{
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;;
+    margin-bottom: 5px;
+}
+
+.ReplyCommentBox{
+    margin:auto;
+    height: 100%;
+    width: 350px;
+    /* background-color: green; */
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    border-radius: 28px;
+}
+
+.storiesmodalcontent img{
+    height: 100%;
+    width: 100%;
+}
+
+.storiesmodalcontent input{
+    height: 100%;
+    width: 100%;
+    border-radius: 28px;
+    padding-left: 15px;
+    background-color: transparent;
+    border: none;
+    color: #dbdbdb;
+}
+
+.storiesmodalcontent input:focus{
+    outline: none !important;
+}
+
+.UpperItems{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: blue;;
+}

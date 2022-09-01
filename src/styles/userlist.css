@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.userlist{
+    height: 50px;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.userlist img{
+    height: 100%;
+    width: 60px;
+    border-radius: 50%;
+}
+.userlistname{
+    margin-left: 20px;;
+    font-weight: bold;
+}
+
+.userlist button{
+    position: absolute;
+    right: 0%;
+}

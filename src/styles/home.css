@@ -1,0 +1,219 @@
+*{
+    margin:0;
+    padding:0;
+}
+.homeview{
+    /* height: 100000px; */
+    width: 100%;
+    height: fit-content;
+    padding-top: 40px;
+
+}
+
+.storyitems{
+    margin: 0 auto;
+    height: 100px;
+    width: 500px;
+}
+
+.verticalPostView{
+    height: 400px;
+    width: 500px;
+    margin: 0 auto ;
+    margin-top: 40px;
+}
+
+.storyitems ul{
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    border-radius: 15px;
+    background-color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 5px;;
+    border: 1px solid lightgray;
+
+}
+
+.storyitems ul li{
+    height: 100%;
+    width: 100px;
+    text-decoration: none;;
+    list-style-type: none;
+    display: inline-flex;
+    margin-right: 5px;
+    justify-content: center;
+    align-items: center;;
+    border-radius: 100%;
+    padding: 5px 5px 5px 5px;
+    background: linear-gradient(45deg,gold,fuchsia);
+}
+
+
+
+.storyitems ul li img{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
+
+#feedsul{
+    width: 100%;
+    height: 100%;
+    list-style-type:none;
+    margin: 0;;
+    padding: 0;;
+}
+
+#postli{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+
+#feedsrow{
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    background-color: red;
+}
+.feedsview {
+    min-height: 400px;
+    height: fit-content;
+    width: 100%;
+}
+
+.postperson{
+    width: 100%;
+    height: 50px;
+    display: flex;;
+   padding: 5px 5px 5px 5px;
+}
+
+.postperson img{
+    height: 100%;
+    width: 60px;
+    border-radius: 50%;;
+}
+
+.postperson div{
+    height: 100%;
+    width: fit-content;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    font-weight: bold;
+}
+
+.postperson a{
+    text-decoration: none;;
+    color: black;
+}
+
+.feedimg{
+    width: 100%;
+    height: fit-content
+}
+
+.feedimg img{
+    width: 498px;
+}
+
+.featuresview{
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.featuresview img{
+    margin-right: 15px;
+    height: 30px;
+    width: 30px;
+}
+.postcomments{
+    height: 100px;
+    overflow: auto;
+}
+.postcomments ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.postcomments ul li{
+    padding-left: 5px;
+    padding-top: 5px;
+    display: inline-flex;
+    height: 50px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postcomments img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+.postcomments div{
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.commentsview{
+    height: 30px;
+}
+
+.postcomments a{
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.entercomment{
+    width: 100%;
+    height: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: 1px solid lightgray;
+    background-color: white;;
+}
+
+.entercomment input{
+    height: 100%;
+    width: 80%;
+    border-bottom-left-radius: 20px;
+    border: none;
+    padding-left: 10px;
+}
+
+.entercomment input:focus{
+    outline:none ;
+}
+
+.entercomment button{
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;;
+}
+
+.selfcomment span{
+    font-weight: bold;
+}
+
+.likesview{
+    padding-left: 5px;
+}
+
+.likesview span{
+    font-weight: bold;
+}

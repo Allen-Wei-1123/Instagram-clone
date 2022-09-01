@@ -1,0 +1,161 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.navbar{
+    width: 100;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo{
+    float: left;
+    margin-left: 90px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+}
+
+.searchbox{
+    float: right;
+    height: 100%;
+    width: 350px;
+    background-color: #efefef ;
+    border-radius: 10px;
+    margin-left: 300px;
+}
+
+.searchbox input{
+    width: 100%;
+    height: 100%;
+    border: none;;
+    background-color: transparent;
+    padding-left: 10px;
+}
+.searchbox input:focus{
+    outline: none;;
+}
+.options img{
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
+}
+
+.autocomplete{
+    width: 100%;
+    height: 200px;
+    background-color: white;;
+    -webkit-box-shadow: 0 0 15px 5px lightgray;
+	-moz-box-shadow: 0 0 15px 5px lightgray;
+	box-shadow: 0 0 15px 5px lightgray;
+    overflow: auto;
+    visibility: hidden;
+    border-radius: 15px;;
+}
+
+.autocomplete ul{
+    margin: 0;
+    padding: 0;;
+}
+
+.autocomplete li{
+    list-style-type: none;
+    width: 100%;
+    height: 50px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;;
+}
+
+.autocomplete li img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;;
+    margin-right: 10px;
+}
+
+.autocomplete li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+#morebutton{
+    border: none;;
+    background-color: white;;
+}
+
+.options{
+    margin-left: 200px;
+    height: 100%;
+}
+
+.optionstable{
+    position:relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.options ul li{
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.options .dropdowns{
+    width: 150px;
+    height: 150px;;
+    position: absolute;
+    padding-top: 10px;
+    display: none;
+    left: 50%;
+}
+.dropdownsList{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.dropdownsList li{
+    list-style-type: none;;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    padding-top: 13px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.dropdownsList li:hover{
+    background-color: lightgray;
+}
+
+.dropdownsList li img{
+    height: 25px;
+    width: 25px;
+}
+
+
+.dropdownsList li:last-child{
+    border-bottom: none;
+}
+
+.checkboxDiv{
+    margin-top: 5px;
+}

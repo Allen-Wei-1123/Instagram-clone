@@ -1,0 +1,360 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.userspage{
+    min-height: 800px;
+    height: fit-content;
+    width: 100%;
+    background-color: #fafafa;;
+    padding-top: 40px;
+}
+
+.userheader{
+    margin: auto;
+    height: 200px;
+    width: 700px;
+}
+
+.profileimg{
+    height: 100%;
+    width: 30%;
+    /* background-color: green; */
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileimg img{
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+}
+
+.profileinfo{
+    height: 100%;
+    width: 70%;
+    float: left;
+    /* background-color: blue; */
+    padding-left: 5px;
+
+}
+.profilename,.profilefollowers,.profileintro{
+    width: 100%;
+    height: 30%;
+    margin-bottom: 5px;
+}
+
+.profilename{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;;
+}
+
+.username{
+    font-weight: bold;
+    float: left;
+    height: 100%;
+    min-width: 30%;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+}
+
+.postdiv , .followerdiv, .followingdiv{
+    float: left;
+    height: 100%;
+    width: fit-content;
+    margin-right: 30px;
+    padding-left: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+
+.postdiv , .followerdiv, .followingdiv:hover{
+    cursor: pointer;
+}
+
+.profilelabel{
+    margin-left: 10px;
+}
+
+.profilenumber{
+    font-weight: bold;
+}
+
+.myimages{
+    margin: auto;
+    width: 80%;
+    height: 60px;
+    margin-top: 30px;
+    border-top: 1px solid black;
+}
+
+.tabview{
+    height: 100%;
+    width: 500px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posttab{
+    height: 100%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#spanimg{
+    margin-right: 3px;
+}
+
+.tabview span:hover{
+    cursor: pointer;
+}
+
+.postsview{
+    width: 80%;
+    height: fit-content;
+    background-color: transparent;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
+
+.postsview img{
+    height: 100%;
+    width: 100%;
+}
+
+.showlikes{
+    position: absolute;
+   top: 0;
+   left: 0; 
+   right: 0;
+   bottom: 0;
+    background-color: rgba(211, 211, 211, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 30px;
+   font-weight: bold;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.mygrid{
+    position: relative;
+    box-shadow: 20px 20px 50px grey;
+
+} 
+
+
+.modal,.fmodal, .pmodal{
+    display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modalcontent,.pmodalcontent{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+}   
+
+.modalcontent h3{
+    text-align: center;;
+}
+
+form button{
+    margin-top: 15px;
+    width: 100%;
+}
+
+.pmodalcontent{
+    
+    width: 70%;
+    margin-top: 5%;
+    height: 80%;
+    padding: 0px 0px 0px 0px;
+
+}
+
+.pmodalcontent img{
+    float: left;
+    height: 100%;
+    width: 50%;
+    /* background-color: red; */
+}
+
+.postinfo{
+    float: left;
+    height: 100%;
+    width: 50%;
+    position: relative;
+}
+
+.person{
+    padding-top: 5px;
+    height: 10%;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.person img{
+    height: 100%;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+}
+
+.personname{
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    font-weight: bold;
+}
+
+.personname span{
+    color: #0095f6;
+    cursor: pointer;
+
+}
+
+.commentsview{
+    width: 100%;
+    min-height: 62%;
+    border-bottom: 1px solid lightgray;
+    overflow: auto;
+}
+
+.commentsview ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+    height: fit-content;
+}
+
+.commentsview li{
+    width: 100%;
+    min-height: 60px;
+}
+
+.listdiv{
+   padding-left: 5px;;
+   padding-top: 10px;
+   height: 100%;
+   display: flex;
+   justify-content: flex-start;;
+   align-items: center;;
+}
+
+.listdiv img{
+    height: 100%;
+    width: 50px;
+    border-radius: 50%;;
+    float: left;
+    object-fit: contain;;
+}
+
+.listdivcomment{
+    float: left;;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 5px;
+}
+
+.listdivcomment span{
+    text-decoration: none;;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.extrafeatureview{
+    width: 100%;
+    height: 30px;
+    padding-left: 5px;;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.extrafeatureview span{
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.keyinComment{
+    width: 100%;
+    height: 100px;
+    padding-right: 5px;
+    /* position:relative; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.keyinComment input{
+    bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    float: left;
+    height: 40px;
+    padding-left: 5px;
+    border: 1px solid lightgray;
+    border-bottom: none;
+    float: left;;
+}
+
+.keyinComment button{
+    float: right;;
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 5px;
+}
+
+.keyinComment input:focus{
+    outline:none;   
+}
+
+.extrafeatureview img{
+    height: 32px;
+    width: 32px;
+}
+
+#submitedit{
+    width: 100%;
+    margin-top: 5px;
+}
