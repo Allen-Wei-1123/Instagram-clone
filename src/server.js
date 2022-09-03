@@ -181,4 +181,41 @@ io.on('connection', socket => {
     })
 
 
+    socket.on("SaveClicked",async(detail)=>{
+        console.log("detail is ",detail)
+        collection = client.db("Instagram").collection("users");
+        collection.updateOne({_id:ObjectId(detail.authorid)},{$push:{saved:ObjectId(detail.postid)}})
+    })
+
+    socket.on("RemoveSave",async(detail)=>{
+        collection = client.db("Instagram").collection("users");
+        collection.updateOne({_id:ObjectId(detail.authorid)},{$pull:{saved:ObjectId(detail.postid)}})
+    })
+
+
+    socket.on("GetSaved",async(detail)=>{
+        console.log("detail is ",detail);
+        collection = client.db("Instagram").collection("users")
+        var promises = []
+        var SavedPosts = []
+        collection.findOne({_id:ObjectId(detail.authorid)}).then(async (res)=>{
+            const posts = res.saved;
+            
+            for(var i = 0 ;i<posts.length;i++){
+                promises.push(
+                    client.db("Instagram").collection("Posts").findOne({_id:ObjectId(posts[i])}).then((res2)=>{
+                        console.log("res2 is ",res2);
+                        SavedPosts.push(res2); 
+                    })
+                )
+            }
+            
+            Promise.all(promises).then(()=>{
+                socket.emit("EmitSaved",SavedPosts)
+            })
+        })
+    })
+
+
+
 })

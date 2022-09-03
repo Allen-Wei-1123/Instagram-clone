@@ -17,12 +17,21 @@
     padding-bottom: 50px;
 }
 
-.storiesmodalcontent{
+.storiesmodalcontentSelected,.storiesmodalcontentNotSelected{
     background-color: #fefefe;
     margin:  auto; /* 15% from the top and centered */
-    border: 1px solid #888;
+    border-radius: 10px;
+    position: relative;
+}
+
+.storiesmodalcontentSelected{
     width: 30%; /* Could be more or less, depending on screen size */
     height: 100%;
+}
+
+.storiesmodalcontentNotSelected{
+    width: 20%;
+    height: 55%;
     position: relative;
 }
 
@@ -43,16 +52,36 @@
     width: 350px;
     /* background-color: green; */
     background-color: transparent;
-    border: 1px solid #dbdbdb;
+    border: 2px solid #dbdbdb;
     border-radius: 28px;
 }
 
-.storiesmodalcontent img{
-    height: 100%;
-    width: 100%;
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #dbdbdb  ;
+    font-weight: bold;
 }
 
-.storiesmodalcontent input{
+.GrayBackground{
+     display: none; 
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 1;
+}
+
+.storiesmodalcontentSelected img, .storiesmodalcontentNotSelected img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.storiesmodalcontentSelected input, .storiesmodalcontentNotSelected input{
     height: 100%;
     width: 100%;
     border-radius: 28px;
@@ -62,7 +91,7 @@
     color: #dbdbdb;
 }
 
-.storiesmodalcontent input:focus{
+.storiesmodalcontentSelected input:focus, .storiesmodalcontentNotSelected input:focus{
     outline: none !important;
 }
 
@@ -71,5 +100,29 @@
     top: 0;
     width: 100%;
     height: 50px;
-    background-color: blue;;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.UpperItems img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.itemusername{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    border-radius: 10px;
+    background-color: rgba(97, 96, 95, 0.8);
 }

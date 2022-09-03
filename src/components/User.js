@@ -303,6 +303,7 @@ class UserDetailsComponent extends React.Component{
         }
 
         componentDidMount(){
+            $("#PostTab").css("border-top","1px solid black")
             getUserDetails(this.props.userid,this.assignUser,this.assignPosts)
         }
 
@@ -407,6 +408,41 @@ class UserDetailsComponent extends React.Component{
             })
         }
 
+        ClickSave = ()=>{
+            const user = JSON.parse( localStorage.getItem("user") )
+            socket.emit("GetSaved",{authorid:this.props.userid}).on("EmitSaved",(res)=>{
+                this.setState({
+                    posts:res
+                })
+            })
+            $("#SaveTab").css("border-top","1px solid black")
+            $("#PostTab").css("border-top","none")
+            $("#TagTab").css("border-top","none")
+        }
+
+        ClickPost = () =>{
+            const user = JSON.parse(localStorage.getItem("user"))
+            getUserDetails(this.props.userid,this.assignUser,this.assignPosts)
+            $("#SaveTab").css("border-top","none")
+            $("#PostTab").css("border-top","1px solid black")
+            $("#TagTab").css("border-top","none")
+        }
+
+        SaveTabOption = () =>{
+            const user = JSON.parse( localStorage.getItem("user") )
+            if(user._id == this.props.userid){
+                return (
+                            <div class = "posttab" id = "SaveTab">
+                                        <span id = "spanimg" onClick = {this.ClickSave} >
+                                            <img src = {process.env.PUBLIC_URL+"/images/saved.png"} ></img>
+                                        </span>
+                                        <span onClick = {this.ClickSave}>SAVED</span>
+                                </div>
+                )
+            }else{
+                return <div></div>
+            }
+        }
               
         render(){
 
@@ -448,19 +484,16 @@ class UserDetailsComponent extends React.Component{
 
                         <div class= "myimages">
                             <div class ="tabview">
-                                <div class = "posttab">
-                                        <span id = "spanimg">
+                                <div class = "posttab" id = "PostTab" >
+                                        <span id = "spanimg" onClick = {this.ClickPost}>
                                             <img src = {process.env.PUBLIC_URL+"/images/grid.png"}></img>
                                         </span>
-                                        <span>POSTS</span>
+                                        <span onClick={this.ClickPost}>POSTS</span>
                                 </div>
-                                <div class = "posttab">
-                                        <span id = "spanimg">
-                                            <img src = {process.env.PUBLIC_URL+"/images/saved.png"}></img>
-                                        </span>
-                                        <span>SAVED</span>
-                                </div>
-                                <div class = "posttab">
+                                {
+                                    this.SaveTabOption()
+                                }
+                                <div class = "posttab" id = "TagTab">
                                         <span id = "spanimg">
                                             <img src = {process.env.PUBLIC_URL+"/images/tagged.png"}></img>
                                         </span>

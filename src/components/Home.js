@@ -8,7 +8,7 @@ import StoriesFeedComponents from './StoriesFeeds'
 const socket = io("http://localhost:5000")
 
 
-function feedsview(removeLikefunction,
+function feedsview( removeLikefunction,
                     ClickedPostid,
                     insertLikesfunction,
                     navToUserfunction,
@@ -17,7 +17,11 @@ function feedsview(removeLikefunction,
                     postername,
                     postimg,
                     commentsarr,
-                    thispostid,authorid,likesarr,postdescription ){
+                    thispostid,authorid,likesarr,postdescription,
+                    insertSave,
+                    removeSave,
+                    SavedPostList
+                    ){
 
     function comments(name,img,description,posterid){
         return (
@@ -89,6 +93,33 @@ function feedsview(removeLikefunction,
        }
     
    }
+
+
+   function ClickSave(){
+        const user = JSON.parse(localStorage.getItem("user"))
+        const detail = {authorid:user._id,postid:thispostid}
+        socket.emit("SaveClicked",detail)
+        insertSave(detail.postid)
+   }
+
+   function RemoveSave(){
+       const user = JSON.parse(localStorage.getItem("user"))
+       const detail = {authorid:user._id,postid:thispostid}
+       socket.emit("RemoveSave",detail)
+       removeSave(detail.postid)
+   }
+
+
+
+   function SaveButton(){
+    //    console.log("thispostid is ",thispostid , SavedPostList)
+        if( !(SavedPostList.includes(thispostid)) ){
+            return  <img src ={process.env.PUBLIC_URL+"/images/save.png"} onClick={ClickSave} id = "saveicon"></img>
+        }else{
+            return <img src ={process.env.PUBLIC_URL+"/images/bookmark.png"} onClick={RemoveSave} id = "saveicon"></img>
+        }
+   }
+
     return(
         <Fragment>
             <div class = "feedsview">
@@ -105,6 +136,7 @@ function feedsview(removeLikefunction,
                     {heartButton()}
                     <img src = {process.env.PUBLIC_URL+"/images/message.png"}></img>
                     <img src = {process.env.PUBLIC_URL+"/images/send.png"}></img>
+                    {SaveButton()}
                 </div>
                 <div class = "likesview">
                     <span onClick={clickOpenLikes}>{likesarr.length} Like</span>
@@ -132,14 +164,19 @@ function feedsview(removeLikefunction,
 
 function StoriesView(stories){
     function clickStories(){
-        $(".storiesmodal").css("display","block")
+        $(".storiesmodal").css("display","flex")
+        $(".storiesmodal").css("justify-content","center")
+        $(".storiesmodal").css("align-items","center")
     }
+    
 
-    return stories.map((story)=>{
-        return <li>
-            <img src = {story.profileimage} onClick={clickStories}></img>
-        </li>
-    })
+    return (
+        Object.keys(stories).forEach((key,index)=>{
+            const userval = stories[key][0];
+            console.log("userval is ",userval);
+            return  <img src = {userval.profileimage} onClick={clickStories}></img>
+        })
+    )
 }
 
 
@@ -151,7 +188,9 @@ class Home extends  React.Component{
             users:[],
             posts:[],
             likelist:[],
-            stories:[]
+            stories:[],
+            clickedstories:[],
+            saved:[]
         })
     }
     componentDidMount(){
@@ -167,9 +206,17 @@ class Home extends  React.Component{
                 loginuser:user
             })
         })
-        .on("ReturnStoriesFeed",res=>{
+        .on("ReturnStoriesFeed",(res)=>{
+            console.log("res is ",res);
+            var tmpstate = {}
+            for(var i = 0 ;i<res.length;i++){
+                if(!(res[i].authorid in tmpstate)){
+                    tmpstate[res[i].authorid] = []
+                }
+                tmpstate[res[i].authorid].push(res[i])
+            }
             this.setState({
-                stories:res
+                stories:tmpstate
             })
         })
 
@@ -227,6 +274,22 @@ class Home extends  React.Component{
         }
     }
 
+    insertSave = (postid) =>{
+        var curruser = this.state.loginuser;
+        curruser.saved.push(postid);
+        this.setState({loginuser:curruser})
+        localStorage.setItem("user",JSON.stringify(curruser))
+    }
+
+    removeSave = (postid) =>{
+        var curruser = this.state.loginuser;
+        const res = curruser.saved.filter((element)=>element != postid);
+        curruser.saved = res;
+        this.setState({loginuser:curruser})
+        localStorage.setItem("user",JSON.stringify(curruser))
+    }
+
+
     render(){
         return (
             <Fragment>
@@ -254,7 +317,10 @@ class Home extends  React.Component{
                                                     post.retPost.img,
                                                     post.retPost.comments == undefined ? undefined :post.retPost.comments,
                                                     post.retPost._id,
-                                                    post.authorid,post.retPost.likes,post.retPost.description
+                                                    post.authorid,post.retPost.likes,post.retPost.description,
+                                                    this.insertSave,
+                                                    this.removeSave,
+                                                    this.state.loginuser.saved
                                                 )
                                     }
                                 </li>
@@ -264,7 +330,7 @@ class Home extends  React.Component{
                     </div>
                 </div>
                 <Likeslist listarr  = {this.state.likelist} followinglist = {this.state.loginuser.following} title={"Likes"} setloginuserfunction = {this.setLoginUser}></Likeslist>
-                <StoriesFeedComponents></StoriesFeedComponents>
+                <StoriesFeedComponents ></StoriesFeedComponents>
                         
             </Fragment>
         )

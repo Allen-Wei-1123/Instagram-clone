@@ -217,3 +217,9 @@
 .likesview span{
     font-weight: bold;
 }
+
+#saveicon{
+    float: right;
+    cursor: pointer;
+}
+
