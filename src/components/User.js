@@ -14,9 +14,9 @@ function posts(userposts,onClickedimg){
     function showforeground(event){
         $("#showlikes"+event.target.id).css('visibility','visible');
     }
-    function openpostcard(img,postid,comments,likes){
+    function openpostcard(img,postid,comments,likes,description){
             $('.pmodal').css('display','block')
-            onClickedimg(img,postid,comments,likes)
+            onClickedimg(img,postid,comments,likes,description)
     }
     
 
@@ -29,7 +29,7 @@ function posts(userposts,onClickedimg){
             <div class = "postsview">
                 {
                     userposts.map((mypost)=>{
-                        return <div class = "mygrid" key = {mypost._id} onMouseOver ={showforeground} onMouseOut= {hideforeground} onClick = {()=>openpostcard(mypost.img,mypost._id,mypost.comments,mypost.likes)}>
+                        return <div class = "mygrid" key = {mypost._id} onMouseOver ={showforeground} onMouseOut= {hideforeground} onClick = {()=>openpostcard(mypost.img,mypost._id,mypost.comments,mypost.likes,mypost.description)}>
                             <img  id = {''+(idcount)} src = {mypost.img }></img>
                             <div id={"showlikes"+(idcount++)} class = "showlikes" >
                                 {  (mypost.likes == undefined ? 0 : mypost.likes.length) +" Likes"}
@@ -166,7 +166,8 @@ function bigcard(likeslist,
                 insertcommentfunction,
                 navToUserfunction,
                 pushLikes,
-                removeLike
+                removeLike,
+                description
                 ){
     function commentcard(img,username,description,posterid){
         return (
@@ -193,7 +194,7 @@ function bigcard(likeslist,
                 console.log(info)
 
         socket.emit("insertcomment",info).on("returncomments",res=>{
-            insertcommentfunction({img:info.img,author:info.posterusername,description:info.description,posterid:thisuser._id})
+            insertcommentfunction({img:info.img,author:info.posterusername,description:info.description,posterid:thisuser._id},clickedpostid)
         })
         $("#postcomment").val("")
     }
@@ -248,7 +249,9 @@ function bigcard(likeslist,
                 </div>
                 <div class = "commentsview">
                     <ul>
-                        
+                        {
+                            <li>{commentcard(profileimg,username, description, userid)}</li>
+                        }
                         {
                             postcomments.map((comment)=>{
                                 return <li>{commentcard(comment.img,comment.author,comment.description,comment.posterid)}</li>
@@ -295,7 +298,8 @@ class UserDetailsComponent extends React.Component{
                 comments:[],
                 clickedimg:"",
                 description:"",
-                likes:[]
+                likes:[],
+                description : ""
             }
             this.assignUser = this.assignUser.bind(this)
             this.assignPosts = this.assignPosts.bind(this)
@@ -328,8 +332,8 @@ class UserDetailsComponent extends React.Component{
             })
         }
         
-        onClickedimg =(img,postid,allcomments,alllikes)=>{
-            this.setState({clickedimg:img,clickedpostid:postid,comments:allcomments,likes:alllikes})
+        onClickedimg =(img,postid,allcomments,alllikes,description)=>{
+            this.setState({clickedimg:img,clickedpostid:postid,comments:allcomments,likes:alllikes,description:description})
         }
 
         pushLikes = (postid,info)=>{
@@ -360,8 +364,14 @@ class UserDetailsComponent extends React.Component{
             }
         }
 
-        onInsertComment = (val) =>{
+        onInsertComment = (val,clickedpostid) =>{
             this.setState({comments:[...this.state.comments,val]})
+            var allposts = this.state.posts
+            for(var i = 0 ;i<allposts.length;i++){
+                if(allposts[i]._id == clickedpostid){
+                    allposts[i].comments.push(val);
+                }
+            }
         }
 
         setFollowers = (thisuser)=>{
@@ -520,7 +530,8 @@ class UserDetailsComponent extends React.Component{
                                         this.onInsertComment,
                                         this.props.navToUser,
                                         this.pushLikes,
-                                        this.removeLikes
+                                        this.removeLikes,
+                                        this.state.description
                                     )
                             }
                         </div>
